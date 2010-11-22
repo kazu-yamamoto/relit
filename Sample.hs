@@ -2,7 +2,7 @@
 
 module Main where
 
-import RegexLiteral
+import Text.Regex.Literal
 import Text.Regex.Posix
 
 target1 :: String

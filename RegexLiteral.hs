@@ -1,7 +1,7 @@
 {-# LANGUAGE FlexibleContexts #-}
 {-# OPTIONS -fno-warn-orphans #-}
 
-module RegexLiteral where
+module Text.Regex.Literal where
 
 import Data.String
 import Language.Haskell.TH
