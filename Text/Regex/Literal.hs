@@ -1,44 +1,42 @@
 {-# LANGUAGE FlexibleContexts, FlexibleInstances, UndecidableInstances, CPP #-}
-{-# OPTIONS -fno-warn-orphans #-}
+{-# OPTIONS_GHC -fno-warn-orphans #-}
 
-{-|
-  Literal notation for regular expression.
+-- |
+-- Literal notation for regular expression.
+--
+-- Importing this module with the 'QuasiQuotes' and 'OverloadedStrings'
+-- extensions making possible to directly specify reqular expression
+-- literal. This means that awkward backslashes are not necessary.
+--
+-- You can copy a regular expression in other languages and paste it
+-- to your Haskell program.
+--
+-- Sample code:
+--
+-- > {-# LANGUAGE QuasiQuotes, OverloadedStrings #-}
+-- >
+-- > import Text.Regex.Literal
+-- > import Text.Regex.Posix
+-- >
+-- > -- Regular expression as the regular expression literal
+-- > regexp :: Regex
+-- > regexp = [$re|\\(foo)\\(bar\.c)|]
+--
+-- Compare with regular expression as the String literal.
+--
+-- > regexp :: Regex
+-- > regexp = makeRegex ("\\\\(foo)\\\\(bar\\.c)" :: String)
+--
+-- GHC 6.12.3 or earlier requires the dollar sign before \"re\".
+--
+-- GHC 7.0.1 does not allow the dollar sign before \"re\".
+--
+-- GHC 7.0.2 or later allows the dollar sign before \"re\" as an
+-- obsoleted syntax.
+--
+-- So, use GHC other than 7.0.1 and specify the dollor sign for
+-- portability.
 
-  Importing this module with the 'QuasiQuotes' and 'OverloadedStrings'
-  extensions making possible to directly specify reqular expression
-  literal. This means that awkward backslashes are not necessary.
-
-  You can copy a regular expression in other languages and paste it
-  to your Haskell program.
-
-  Sample code:
-
->    { -# LANGUAGE QuasiQuotes, OverloadedStrings #- }
->    -- Due to Haddock limitation, spaces are inserted after and before "}".
->    -- Remove them if you copy this.
->
->    import Text.Regex.Literal
->    import Text.Regex.Posix
->
->    -- Regular expression as the regular expression literal
->    regexp :: Regex
->    regexp = [$re|\\(foo)\\(bar\.c)|]
->
->    -- Regular expression as the String literal
->    -- regexp :: Regex
->    -- regexp = makeRegex ("\\\\(foo)\\\\(bar\\.c)" :: String)
-
-  GHC 6.12.3 or earlier requires the dollar sign before \"re\".
-
-  GHC 7.0.1 does not allow the dollar sign before \"re\".
-
-  GHC 7.0.2 or later allows the dollar sign before \"re\" as an
-  obsoleted syntax.
-
-  So, use GHC other than 7.0.1 and specify the dollor sign for
-  portability.
-
--}
 module Text.Regex.Literal (re) where
 
 import Data.String
